@@ -1,0 +1,19 @@
+start_date: '2023-01-01'
+# Complete UTC-independent calendar days in America/New_York.
+publication_lag_days: 3
+revision_lookback_days: 14
+categories:
+  - HEAT/HOT WATER
+  - Water System
+  - Street Condition
+station: USW00094728
+page_size: 10000
+request_timeout: 90
+retry_attempts: 5
+forecast_horizon: 7
+validation_folds: 6
+test_days: 28
+random_seed: 42
+minimum_training_days: 365
+postgres_port: 55432
+superset_port: 8088

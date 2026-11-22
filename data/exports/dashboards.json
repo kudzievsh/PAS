@@ -1,0 +1,46 @@
+{
+  "subject": {
+    "title": "Обращения граждан — анализ и прогноз",
+    "slug": "pas-demand",
+    "id": 1,
+    "charts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "url": "http://127.0.0.1:8088/superset/dashboard/pas-demand/"
+  },
+  "operations": {
+    "title": "Обращения граждан — состояние данных",
+    "slug": "pas-operations",
+    "id": 2,
+    "charts": [
+      9,
+      10,
+      11,
+      12,
+      15,
+      17,
+      13,
+      14,
+      16
+    ],
+    "url": "http://127.0.0.1:8088/superset/dashboard/pas-operations/"
+  },
+  "datasets": {
+    "daily": 1,
+    "combined": 2,
+    "forecast": 3,
+    "metrics": 4,
+    "loads": 5,
+    "quality": 6,
+    "freshness": 7,
+    "lineage": 8,
+    "category_freshness": 9
+  }
+}

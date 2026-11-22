@@ -1,0 +1,168 @@
+{
+  "actual_manhattan_90_days": 15783,
+  "forecast_manhattan": 2303.0,
+  "loaded_rows": 1639872,
+  "duplicate_keys": 0,
+  "incremental": [
+    {
+      "source_name": "noaa_daily",
+      "rows_received": 15,
+      "rows_inserted": 0,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "source_name": "nyc_311",
+      "rows_received": 17329,
+      "rows_inserted": 0,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "SUCCESS"
+    }
+  ],
+  "quality": [
+    {
+      "check_name": "Обязательные поля обращений",
+      "check_type": "completeness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Уникальность ключей обращений",
+      "check_type": "uniqueness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Полнота переноса raw в core",
+      "check_type": "completeness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Числовой тип идентификатора источника",
+      "check_type": "type",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Допустимые значения статуса",
+      "check_type": "validity",
+      "severity": "WARN",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Отрицательные суточные количества",
+      "check_type": "range",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Температура и осадки в допустимом диапазоне",
+      "check_type": "range",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Ссылочная целостность витрины",
+      "check_type": "referential_integrity",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Сверка суммы витрины и обращений",
+      "check_type": "reconciliation",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Покрытие календаря погодой",
+      "check_type": "completeness",
+      "severity": "WARN",
+      "observed_value": 2.0,
+      "status": "WARN"
+    },
+    {
+      "check_name": "Неопределённая территориальная привязка",
+      "check_type": "validity",
+      "severity": "WARN",
+      "observed_value": 12337.0,
+      "status": "WARN"
+    },
+    {
+      "check_name": "Пропуски в календаре витрины",
+      "check_type": "completeness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Одна текущая версия историзации",
+      "check_type": "uniqueness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Согласованность текущей версии истории",
+      "check_type": "reconciliation",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Актуальность обращений",
+      "check_type": "freshness",
+      "severity": "WARN",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Актуальность погоды",
+      "check_type": "freshness",
+      "severity": "WARN",
+      "observed_value": 0.0,
+      "status": "PASS"
+    },
+    {
+      "check_name": "Актуальность каждой категории обращений",
+      "check_type": "freshness",
+      "severity": "WARN",
+      "observed_value": 1.0,
+      "status": "WARN"
+    }
+  ],
+  "categories": [
+    {
+      "source_name": "nyc_311",
+      "category_name": "HEAT/HOT WATER",
+      "last_request_date": "2026-11-12",
+      "age_days": 3,
+      "status": "PASS"
+    },
+    {
+      "source_name": "nyc_311",
+      "category_name": "Street Condition",
+      "last_request_date": "2026-11-12",
+      "age_days": 3,
+      "status": "PASS"
+    },
+    {
+      "source_name": "nyc_311",
+      "category_name": "Water System",
+      "last_request_date": "2026-07-29",
+      "age_days": 109,
+      "status": "WARN"
+    }
+  ]
+}

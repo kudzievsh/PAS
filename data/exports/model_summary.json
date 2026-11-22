@@ -1,0 +1,112 @@
+{
+  "run_id": "0de4f3f1-0995-4b01-bc62-6c4bc9561a62",
+  "origin": "2026-11-12",
+  "selected_model": "SeasonalNaive7",
+  "metrics": [
+    {
+      "split": "test",
+      "model": "RidgeDirect7",
+      "level": "city_daily",
+      "mae": 759.1090902376986,
+      "rmse": 878.6742342045022,
+      "wape": 51.38160922846428
+    },
+    {
+      "split": "test",
+      "model": "RidgeDirect7",
+      "level": "district_category",
+      "mae": 4.692751079846294,
+      "rmse": 11.12449817897201,
+      "wape": 75.28587950590578
+    },
+    {
+      "split": "test",
+      "model": "SeasonalNaive7",
+      "level": "city_daily",
+      "mae": 813.5357142857143,
+      "rmse": 951.3657083537153,
+      "wape": 57.49578405853787
+    },
+    {
+      "split": "test",
+      "model": "SeasonalNaive7",
+      "level": "district_category",
+      "mae": 4.650251730648206,
+      "rmse": 11.48764966332637,
+      "wape": 76.0064541426149
+    },
+    {
+      "split": "validation",
+      "model": "RidgeDirect7",
+      "level": "city_daily",
+      "mae": 125.8939380309347,
+      "rmse": 159.84385969482582,
+      "wape": 23.977899416916923
+    },
+    {
+      "split": "validation",
+      "model": "RidgeDirect7",
+      "level": "district_category",
+      "mae": 1.8622840723352017,
+      "rmse": 3.5218707699258593,
+      "wape": 83.99380310459672
+    },
+    {
+      "split": "validation",
+      "model": "SeasonalNaive7",
+      "level": "city_daily",
+      "mae": 129.42857142857142,
+      "rmse": 183.92258789136815,
+      "wape": 23.281671412629777
+    },
+    {
+      "split": "validation",
+      "model": "SeasonalNaive7",
+      "level": "district_category",
+      "mae": 1.6914201804069646,
+      "rmse": 3.7343914456161413,
+      "wape": 75.85117033557393
+    }
+  ],
+  "parameters": {
+    "ridge_alpha": 20.0,
+    "target_transform": "log1p",
+    "max_training_days": 730,
+    "numeric_features": [
+      "lag0",
+      "lag1",
+      "lag6",
+      "lag7",
+      "lag13",
+      "lag27",
+      "mean7",
+      "mean28",
+      "std7",
+      "std28",
+      "temp_min_lag7",
+      "temp_max_lag7",
+      "precip_lag7",
+      "annual_sin",
+      "annual_cos",
+      "trend"
+    ],
+    "categorical_features": [
+      "category_id",
+      "district_id",
+      "target_dow",
+      "target_month"
+    ],
+    "weather_availability_lag_days": 7,
+    "seed": 42,
+    "scope": [
+      "HEAT/HOT WATER",
+      "Water System",
+      "Street Condition"
+    ],
+    "selection": "minimum mean validation WAPE at district-category level"
+  },
+  "date_from": "2023-01-01",
+  "date_to": "2026-11-12",
+  "rows": 320524,
+  "series": 227
+}

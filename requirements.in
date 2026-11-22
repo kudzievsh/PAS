@@ -1,0 +1,10 @@
+apache-superset==6.0.0
+python-geohash==0.8.5
+numpy==1.26.4
+scikit-learn==1.6.1
+matplotlib
+psycopg2-binary
+requests
+pytest
+psutil
+rich

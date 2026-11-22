@@ -1,0 +1,351 @@
+{
+  "measured_on": "2026-11-15",
+  "request_count": 1639872,
+  "mart_rows": 320524,
+  "days": 1412,
+  "series": 227,
+  "territory_values": 79,
+  "weather": {
+    "n": 1410,
+    "first": "2023-01-01",
+    "last": "2026-11-10"
+  },
+  "categories": [
+    {
+      "category_name": "HEAT/HOT WATER",
+      "count": 1064339,
+      "first_date": "2023-01-01",
+      "last_date": "2026-11-12"
+    },
+    {
+      "category_name": "Street Condition",
+      "count": 322331,
+      "first_date": "2023-01-01",
+      "last_date": "2026-11-12"
+    },
+    {
+      "category_name": "Water System",
+      "count": 253202,
+      "first_date": "2023-01-01",
+      "last_date": "2026-07-29"
+    }
+  ],
+  "quality": [
+    {
+      "result_id": 34,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Обязательные поля обращений",
+      "check_type": "completeness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM core.service_request WHERE unique_key IS NULL OR request_date IS NULL OR category_id IS NULL OR district_id IS NULL\"}"
+    },
+    {
+      "result_id": 35,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Уникальность ключей обращений",
+      "check_type": "uniqueness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*)-count(DISTINCT unique_key) FROM core.service_request\"}"
+    },
+    {
+      "result_id": 36,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Полнота переноса raw в core",
+      "check_type": "completeness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT (SELECT count(*) FROM raw.service_request)-(SELECT count(*) FROM core.service_request)\"}"
+    },
+    {
+      "result_id": 37,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Числовой тип идентификатора источника",
+      "check_type": "type",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM raw.service_request WHERE unique_key !~ '^[0-9]+$'\"}"
+    },
+    {
+      "result_id": 38,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Допустимые значения статуса",
+      "check_type": "validity",
+      "severity": "WARN",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM core.service_request WHERE status NOT IN ('Open','Closed','Assigned','Pending','Started','In Progress','Unspecified')\"}"
+    },
+    {
+      "result_id": 39,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Отрицательные суточные количества",
+      "check_type": "range",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM mart.daily_requests WHERE request_count<0\"}"
+    },
+    {
+      "result_id": 40,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Температура и осадки в допустимом диапазоне",
+      "check_type": "range",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM core.weather WHERE temperature_min < -60 OR temperature_max > 60 OR temperature_min>temperature_max OR precipitation<0 OR snow<0\"}"
+    },
+    {
+      "result_id": 41,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Ссылочная целостность витрины",
+      "check_type": "referential_integrity",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM mart.daily_requests m LEFT JOIN core.category c USING(category_id) LEFT JOIN core.district d USING(district_id) WHERE c.category_id IS NULL OR d.district_id IS NULL\"}"
+    },
+    {
+      "result_id": 42,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Сверка суммы витрины и обращений",
+      "check_type": "reconciliation",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT abs((SELECT sum(request_count) FROM mart.daily_requests)-(SELECT count(*) FROM core.service_request))\"}"
+    },
+    {
+      "result_id": 43,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Покрытие календаря погодой",
+      "check_type": "completeness",
+      "severity": "WARN",
+      "observed_value": 2.0,
+      "expected_rule": "= 0",
+      "status": "WARN",
+      "details": "{\"sql\": \"SELECT count(*) FROM (SELECT DISTINCT request_date FROM mart.daily_requests WHERE temperature_min IS NULL OR temperature_max IS NULL) x\"}"
+    },
+    {
+      "result_id": 44,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Неопределённая территориальная привязка",
+      "check_type": "validity",
+      "severity": "WARN",
+      "observed_value": 12337.0,
+      "expected_rule": "= 0",
+      "status": "WARN",
+      "details": "{\"sql\": \"SELECT count(*) FROM core.service_request r JOIN core.district d USING(district_id) WHERE d.borough='UNKNOWN' OR d.community_board !~ '^[0-9]{2} (BRONX|BROOKLYN|MANHATTAN|QUEENS|STATEN ISLAND)$'\"}"
+    },
+    {
+      "result_id": 45,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Пропуски в календаре витрины",
+      "check_type": "completeness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT (max(request_date)-min(request_date)+1)-count(DISTINCT request_date) FROM mart.daily_requests\"}"
+    },
+    {
+      "result_id": 46,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Одна текущая версия историзации",
+      "check_type": "uniqueness",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM (SELECT unique_key FROM core.request_history WHERE valid_to IS NULL GROUP BY unique_key HAVING count(*)<>1) x\"}"
+    },
+    {
+      "result_id": 47,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Согласованность текущей версии истории",
+      "check_type": "reconciliation",
+      "severity": "ERROR",
+      "observed_value": 0.0,
+      "expected_rule": "= 0",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT count(*) FROM raw.service_request r LEFT JOIN core.request_history h ON h.unique_key=r.unique_key AND h.valid_to IS NULL WHERE h.history_id IS NULL OR h.source_hash<>r.source_hash\"}"
+    },
+    {
+      "result_id": 48,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Актуальность обращений",
+      "check_type": "freshness",
+      "severity": "WARN",
+      "observed_value": 0.0,
+      "expected_rule": "age <= 5 days",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT greatest(0,((current_timestamp AT TIME ZONE 'America/New_York')::date-(SELECT max(request_date) FROM core.service_request))-5)\"}"
+    },
+    {
+      "result_id": 49,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Актуальность погоды",
+      "check_type": "freshness",
+      "severity": "WARN",
+      "observed_value": 0.0,
+      "expected_rule": "age <= 7 days",
+      "status": "PASS",
+      "details": "{\"sql\": \"SELECT greatest(0,((current_timestamp AT TIME ZONE 'America/New_York')::date-(SELECT max(observation_date) FROM core.weather))-7)\"}"
+    },
+    {
+      "result_id": 50,
+      "run_id": "5ab100b0-d01f-4383-b635-b7fe5c09267b",
+      "checked_at": "2026-11-15 20:50:14.394714+03:00",
+      "check_name": "Актуальность каждой категории обращений",
+      "check_type": "freshness",
+      "severity": "WARN",
+      "observed_value": 1.0,
+      "expected_rule": "no category older than 14 days",
+      "status": "WARN",
+      "details": "{\"sql\": \"SELECT count(*) FROM ops.v_category_freshness WHERE status='WARN'\"}"
+    }
+  ],
+  "forecast_total": 9921.0,
+  "forecast_by_day": [
+    {
+      "date": "2026-11-13",
+      "count": 456.0
+    },
+    {
+      "date": "2026-11-14",
+      "count": 713.0
+    },
+    {
+      "date": "2026-11-15",
+      "count": 1226.0
+    },
+    {
+      "date": "2026-11-16",
+      "count": 2373.0
+    },
+    {
+      "date": "2026-11-17",
+      "count": 1788.0
+    },
+    {
+      "date": "2026-11-18",
+      "count": 1364.0
+    },
+    {
+      "date": "2026-11-19",
+      "count": 2001.0
+    }
+  ],
+  "forecast_by_category": {
+    "HEAT/HOT WATER": 8629.0,
+    "Street Condition": 1292.0
+  },
+  "forecast_by_borough": {
+    "BRONX": 2882.0,
+    "BROOKLYN": 2934.0,
+    "MANHATTAN": 2303.0,
+    "QUEENS": 1641.0,
+    "STATEN ISLAND": 161.0,
+    "UNKNOWN": 0.0
+  },
+  "loads": [
+    {
+      "source_name": "noaa_daily",
+      "load_mode": "historical",
+      "date_from": "2023-01-01",
+      "date_to": "2026-11-12",
+      "rows_received": 1410,
+      "rows_inserted": 1410,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "source_name": "nyc_311",
+      "load_mode": "historical",
+      "date_from": "2023-01-01",
+      "date_to": "2026-11-12",
+      "rows_received": 1639872,
+      "rows_inserted": 1639872,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "source_name": "nyc_311",
+      "load_mode": "fault_injection",
+      "date_from": "2023-01-01",
+      "date_to": "2023-01-01",
+      "rows_received": 0,
+      "rows_inserted": 0,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "FAILED"
+    },
+    {
+      "source_name": "noaa_daily",
+      "load_mode": "incremental",
+      "date_from": "2026-10-27",
+      "date_to": "2026-11-12",
+      "rows_received": 15,
+      "rows_inserted": 0,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "SUCCESS"
+    },
+    {
+      "source_name": "nyc_311",
+      "load_mode": "incremental",
+      "date_from": "2026-10-29",
+      "date_to": "2026-11-12",
+      "rows_received": 17329,
+      "rows_inserted": 0,
+      "rows_updated": 0,
+      "rows_rejected": 0,
+      "status": "SUCCESS"
+    }
+  ],
+  "selected_run": {
+    "run_id": "0de4f3f1-0995-4b01-bc62-6c4bc9561a62",
+    "selected_model": "SeasonalNaive7",
+    "cutoff_date": "2026-11-12",
+    "validation_start": "2026-09-04",
+    "validation_end": "2026-10-15",
+    "test_start": "2026-10-16",
+    "test_end": "2026-11-12"
+  },
+  "partitions": 48,
+  "lineage_assets": 18,
+  "history_versions": 1639872
+}

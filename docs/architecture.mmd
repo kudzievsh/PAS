@@ -1,0 +1,15 @@
+flowchart LR
+  NYC[NYC 311 JSON] --> I[Python ingestion]
+  NOAA[NOAA CSV] --> I
+  I --> R[raw PostgreSQL]
+  R --> S[staging нормализация]
+  S --> C[core факты и справочники]
+  C --> M[mart суточные обращения и погода]
+  M --> F[Две модели и временная проверка]
+  F --> P[mart прогнозы и метрики]
+  M --> BI[Superset предметная панель]
+  P --> BI
+  I --> O[ops журналы и качество]
+  C --> H[История наблюдавшихся изменений]
+  O --> OBS[Superset операционная панель]
+  META[meta схемы и происхождение] --> OBS
